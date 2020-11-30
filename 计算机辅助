@@ -1,0 +1,182 @@
+//写了一个下午，孩子已经傻了
+//计算机辅助教学系统
+#include <iostream>
+#include<stdlib.h>
+#include<string>
+#include<cmath>
+#include<ctime>
+#include <iomanip>
+using namespace std;
+
+template<typename T>
+T jia(T a,T b)
+{
+	int n;
+	int c = a + b;
+	return c;
+};
+template<typename T>
+T jian(T a, T b)
+{
+	int n;
+	int c = a - b;
+	return c;
+};
+template<typename T>
+T cheng(T a, T b)
+{
+	int n;
+	int c = a * b;
+	return c;
+
+};
+template<typename T>
+T chu(T a, T b)
+{
+	int n;
+	int c = a / b;
+	return c;
+
+};
+
+
+int main()
+{
+	label3:
+	srand((unsigned)time(NULL));
+	cout << "#####################################  CAI SYSTEM #####################################" << endl;
+   int mode1; 
+
+    cout << "1.加法" << endl;
+	cout << "2.减法" << endl;
+	cout << "3.乘法" << endl;
+	cout << "4.除法" << endl;
+	cout << "5.随机" << endl;
+	cout << "请选择模式：";
+	cin >> mode1;
+	int m1 = mode1;
+
+   int mode2;
+
+	cout << "1.简单-1级" << endl;
+	cout << "2.普通-2级" << endl;
+	cout << "3.困难-3级" << endl;
+	cout << "4.地狱-4级" << endl;
+	cout << "5.随机" << endl;
+	cout << "请选择难度：";
+	cin >> mode2;
+	int m2 = mode2;
+	
+	if (m2 == 5)
+	{
+		m2 = rand() % 4 + 1;
+	}
+	int zq = 0,cw=0;
+	for (double total = 1; total <= 10; total++)
+	{
+		int k = 1;
+		k = pow(10, m2 - 1);
+		int a = rand() % (9 * k) + k;
+		int b = rand() % (9 * k) + k;
+
+		string fu;
+		int sa;
+	label1:switch (m1)
+	{
+	case 1:
+		fu = "+";
+		sa = jia(a, b);
+		break;
+	case 2:
+		fu = "-";
+		sa = jian(a, b);
+		break;
+	case 3:
+		fu = "*";
+		sa = cheng(a, b);
+		break;
+	case 4:
+		fu = "÷";
+		sa = chu(a, b);
+		break;
+	case 5:
+		m1 = rand() % 4 + 1;
+		goto label1;
+		break;
+	}
+label2:
+	cout << "当前正确/错误个数：" << zq << "/" << cw << endl<<endl;
+	cout << "***************************************************************************************" <<  endl << endl;
+	int answer;
+	cout << a << " " << fu << " " << b << " = ";
+	cin >> answer;
+	cout << endl;
+	string Right;
+	string Wrong;
+
+	switch (int r = rand() % 4 + 1)
+	{
+	case 1:
+		Right = "Nice!";
+		break;
+	case 2:
+		Right = "Great!";
+		break;
+	case 3:
+		Right = "牛的！！！";
+		break;
+	case 4:
+		Right = "对的！！！";
+		break;
+	}
+	switch (int w = rand() % 4 + 1)
+	{
+	case 1:
+		Wrong = "NO~~~";
+		break;
+	case 2:
+		Wrong = "Wrong";
+		break;
+	case 3:
+		Wrong = "错了";
+		break;
+	case 4:
+		Wrong = "不对哦";
+		break;
+	}
+	     if (answer == sa)
+	    {
+		
+		cout << Right << endl << endl;
+		zq++;
+		double lv1 = zq / total * 100.0;;
+		cout << "当前正确率为:" << lv1 << endl << endl;
+	    }
+	     else
+	    {
+		cout << Wrong << endl << endl;
+		
+		cw++;
+		double lv2 = zq / total * 100.0;
+		cout << "当前正确率为:" << lv2 << "%" << endl << endl;
+		total++;
+		if (total > 11)
+			break;
+
+		goto label2;
+	    }
+	
+	}
+	double lv= zq / 10 * 100.0;
+	if (lv > 75)
+	{
+		cout << "GREEEEET!!!!!";
+	}
+	else
+	{
+		cout << "NEXT!!!!!!";
+	}
+	goto label3;
+	return 0;
+}
+
